@@ -11,18 +11,17 @@ from .func_utils import handle_logs
 from .reporter import rep
 
 CAPTION_FORMAT = """
-<b>㊂ <i>{title}</i></b>
-<b>╭┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅</b>
-<b>⊙</b> <i>Genres:</i> <i>{genres}</i>
-<b>⊙</b> <i>Status:</i> <i>RELEASING</i> 
-<b>⊙</b> <i>Source:</i> <i>Subsplease</i>
-<b>⊙</b> <i>Episode:</i> <i>{ep_no}</i>
-<b>⊙</b> <i>Audio: Japanese</i>
-<b>⊙</b> <i>Subtitle: English</i>
-<b>╰┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅</b>
-╭┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
-⌬  <b><i>Powered By</i></b> ~ </i></b><b><i>{cred}</i></b>
-╰┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+<b>{title}</b>
+
+<b>Episode:</b> {ep_no}
+<b>Status:</b> Releasing
+<b>Duration:</b> 24 Minutes Per Ep.
+<b>Genres:</b> {genres}
+<b>Audio:</b> Japanese
+
+📌 480p & 720p & 1080p English Subbed
+
+© Managed By Elvazo™
 """
 
 GENRES_EMOJI = {"Action": "👊", "Adventure": choice(['🪂', '🧗‍♀']), "Comedy": "🤣", "Drama": " 🎭", "Ecchi": choice(['💋', '🥵']), "Fantasy": choice(['🧞', '🧞‍♂', '🧞‍♀','🌗']), "Hentai": "🔞", "Horror": "☠", "Mahou Shoujo": "☯", "Mecha": "🤖", "Music": "🎸", "Mystery": "🔮", "Psychological": "♟", "Romance": "💞", "Sci-Fi": "🛸", "Slice of Life": choice(['☘','🍁']), "Sports": "⚽️", "Supernatural": "🫧", "Thriller": choice(['🥶', '🔪','🤯'])}
@@ -215,7 +214,7 @@ class TextEditor:
         return CAPTION_FORMAT.format(
                 title=titles.get('english') or titles.get('romaji') or title.get('native'),
                 form=self.adata.get("format") or "N/A",
-                genres=", ".join(f"{GENRES_EMOJI[x]} #{x.replace(' ', '_').replace('-', '_')}" for x in (self.adata.get('genres') or [])),
+                genres=", ".join(f"{GENRES_EMOJI[x]} {x.replace(' ', '_').replace('-', '_')}" for x in (self.adata.get('genres') or [])),
                 avg_score=f"{sc}%" if (sc := self.adata.get('averageScore')) else "N/A",
                 status=self.adata.get("status") or "N/A",
                 start_date=startdate or "N/A",
