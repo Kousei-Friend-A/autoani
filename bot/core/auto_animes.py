@@ -18,10 +18,10 @@ from .tguploader import TgUploader
 from .reporter import rep
 
 btn_formatter = {
-    '1080':'𝟭𝟬𝟴𝟬𝗽', 
-    '720':'𝟳𝟮𝟬𝗽',
-    '480':'𝟰𝟴𝟬𝗽',
-    '360':'𝟯𝟲𝟬𝗽'
+    '1080':'1080p', 
+    '720':'720p',
+    '480':'480p',
+    '360':'360p'
 }
 
 async def fetch_animes():
@@ -94,7 +94,7 @@ async def get_animes(name, torrent, force=False):
                     return
                 await rep.report("Succesfully Compressed Now Going To Upload...", "info")
                 
-                await editMessage(stat_msg, f"‣ <b>Anime Name :</b> <b><i>{filename}</i></b>\n\n<i>Ready to Upload...</i>")
+                await editMessage(stat_msg, f"📌 <b>Anime Name :</b> <b><i>{filename}</i></b>\n\n<i>✅ Ready to Upload...</i>")
                 await asleep(1.5)
                 try:
                     msg = await TgUploader(stat_msg).upload(out_path, qual)
@@ -110,9 +110,9 @@ async def get_animes(name, torrent, force=False):
                 
                 if post_msg:
                     if len(btns) != 0 and len(btns[-1]) == 1:
-                        btns[-1].insert(1, InlineKeyboardButton(f"{btn_formatter[qual]} - {convertBytes(msg.document.file_size)}", url=link))
+                        btns[-1].insert(1, InlineKeyboardButton(f"{btn_formatter[qual]}", url=link))
                     else:
-                        btns.append([InlineKeyboardButton(f"{btn_formatter[qual]} - {convertBytes(msg.document.file_size)}", url=link)])
+                        btns.append([InlineKeyboardButton(f"{btn_formatter[qual]}", url=link)])
                     await editMessage(post_msg, post_msg.caption.html if post_msg.caption else "", InlineKeyboardMarkup(btns))
                     
                 await db.saveAnime(ani_id, ep_no, qual, post_id)
