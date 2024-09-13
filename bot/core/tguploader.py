@@ -58,9 +58,9 @@ class TgUploader:
             speed = current / diff 
             eta = round((total - current) / speed)
             bar = floor(percent/8)*"█" + (12 - floor(percent/8))*"▒"
-            progress_str = f"""🪧 <b>Anime Name :</b> <b><i>{self.__name}</i></b>
+            progress_str = f"""📌 <b>Anime Name :</b> <b><i>{self.__name}</i></b>
 
-📌 <b>Status :</b> <i>Uploading 📤</i>
+💠 <b>Status :</b> <i>Uploading 📤</i>
     <code>[{bar}]</code> {percent}%
     
     📚 <b>Size :</b> {convertBytes(current)} out of ~ {convertBytes(total)}
