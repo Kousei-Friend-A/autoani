@@ -210,17 +210,13 @@ class TextEditor:
         ed = self.adata.get('endDate', {})
         enddate = f"{month_name[ed['month']]} {ed['day']}, {ed['year']}" if ed.get('day') and ed.get('year') else ""
         titles = self.adata.get("title", {})
-        
-        status = self.adata.get("status") or "N/A"
-        if status != "N/A":
-            status = status.capitalize()
-        
+                
         return CAPTION_FORMAT.format(
                 title=titles.get('english') or titles.get('romaji') or title.get('native'),
                 form=self.adata.get("format") or "N/A",
                 genres=", ".join(f"{GENRES_EMOJI[x]} {x.replace(' ', '_').replace('-', '_')}" for x in (self.adata.get('genres') or [])),
                 avg_score=f"{sc}%" if (sc := self.adata.get('averageScore')) else "N/A",
-                status=status,
+                status=self.adata.get("status") or "N/A",
                 start_date=startdate or "N/A",
                 end_date=enddate or "N/A",
                 t_eps=self.adata.get("episodes") or "N/A",
