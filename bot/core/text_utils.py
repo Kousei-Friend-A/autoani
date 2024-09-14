@@ -11,14 +11,13 @@ from .func_utils import handle_logs
 from .reporter import rep
 
 CAPTION_FORMAT = f"""
-**{title}**
+<b>{title}</b>
 
-**Score:** ⭐️ {avg_score} [Anilist]({surl})
-**Status:** {status}
-**Episode:** {ep_no}
-**Duration:** {dura} Minutes Per Ep.
-**Genres:** {genres}
-**Audio:** Japanese
+<b>Score:</b> ⭐️ {avg_score} [Anilist]({surl})
+<b>Status:/<b> {status}
+<b>Episode:</b> {ep_no}
+<b>Duration:</b> {dura} Minutes Per Ep.
+<b>Genres:</b> {genres}
 
 📌 480p & 720p & 1080p English Subbed
 
