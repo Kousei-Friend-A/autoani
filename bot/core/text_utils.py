@@ -14,17 +14,17 @@ CAPTION_FORMAT = """
 <b>{title}</b>
 
 <b>Score:</b> ⭐️ {avg_score} <a href="{surl}">Anilist</a>
-<b>Status:/<b> {status}
+<b>Status:</b> {status}
 <b>Episode:</b> {ep_no}
 <b>Duration:</b> {dura} Minutes Per Ep.
 <b>Genres:</b> {genres}
 
-📌 480p & 720p & 1080p English Subbed
+📌 Available in 480p & 720p & 1080p English Subtitles
 
 © Managed By Elvazo™
 """
 
-GENRES_EMOJI = {"Action": "👊", "Adventure": choice(['🪂', '🧗‍♀']), "Comedy": "🤣", "Drama": " 🎭", "Ecchi": choice(['💋', '🥵']), "Fantasy": choice(['🧞', '🧞‍♂', '🧞‍♀','🌗']), "Hentai": "🔞", "Horror": "☠", "Mahou Shoujo": "☯", "Mecha": "🤖", "Music": "🎸", "Mystery": "🔮", "Psychological": "♟", "Romance": "💞", "Sci-Fi": "🛸", "Slice of Life": choice(['☘','🍁']), "Sports": "⚽️", "Supernatural": "🫧", "Thriller": choice(['🥶', '🔪','🤯'])}
+GENRES_EMOJI = {"Action": "👊", "Adventure": "🏕", "Comedy": "🤣", "Drama": "💃", "Ecchi": "😘", "Fantasy": "🧚🏻‍♂️", "Hentai": "🔞", "Horror": "👻", "Mahou Shoujo": "🧙", "Mecha": "🚀", "Music": "🎸", "Mystery": "🔎", "Psychological": "😵‍💫", "Romance": "❤️", "Sci-Fi": "🤖", "Slice of Life": "🍃", "Sports": "⚽️", "Supernatural": "⚡️", "Thriller": "😳"}
 
 ANIME_GRAPHQL_QUERY = """
 query ($id: Int, $search: String, $seasonYear: Int) {
