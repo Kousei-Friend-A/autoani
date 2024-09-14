@@ -10,7 +10,7 @@ from .ffencoder import ffargs
 from .func_utils import handle_logs
 from .reporter import rep
 
-CAPTION_FORMAT = f"""
+CAPTION_FORMAT = """
 <b>{title}</b>
 
 <b>Score:</b> ⭐️ {avg_score} [Anilist]({surl})
