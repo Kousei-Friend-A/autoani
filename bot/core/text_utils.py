@@ -10,15 +10,15 @@ from .ffencoder import ffargs
 from .func_utils import handle_logs
 from .reporter import rep
 
-CAPTION_FORMAT = """
-<b>{title}</b>
+CAPTION_FORMAT = f"""
+**{title}**
 
-<b>Score:</b> ⭐️ {avg_score} [Anilist]({surl})
-<b>Status:</b> {status}
-<b>Episode:</b> {ep_no}
-<b>Duration:</b> 24 Minutes Per Ep.
-<b>Genres:</b> {genres}
-<b>Audio:</b> Japanese
+**Score:** ⭐️ {avg_score} [Anilist]({surl})
+**Status:** {status}
+**Episode:** {ep_no}
+**Duration:** {dura} Minutes Per Ep.
+**Genres:** {genres}
+**Audio:** Japanese
 
 📌 480p & 720p & 1080p English Subbed
 
@@ -224,5 +224,6 @@ class TextEditor:
                 plot= (desc if (desc := self.adata.get("description") or "N/A") and len(desc) < 200 else desc[:200] + "..."),
                 ep_no=self.pdata.get("episode_number"),
                 surl=self.adata.get("siteUrl"),
+                dura=self.adata.get("duration"),
                 cred=Var.BRAND_UNAME,
             )
