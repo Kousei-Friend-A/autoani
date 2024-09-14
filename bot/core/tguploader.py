@@ -68,6 +68,6 @@ class TgUploader:
     ⏱ <b>Time Took :</b> {convertTime(diff)}
     ⏳ <b>Time Left :</b> {convertTime(eta)}
 
-🗂 <b>File(s) Encoded:</b> <code>{Var.QUALS.index(self.__qual)} / {len(Var.QUALS)}</code>"""
+📂 <b>File(s) Encoded:</b> <code>{Var.QUALS.index(self.__qual)} / {len(Var.QUALS)}</code>"""
             
             await editMessage(self.message, progress_str)
