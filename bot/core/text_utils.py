@@ -217,6 +217,7 @@ class TextEditor:
                 genres=", ".join(f"{GENRES_EMOJI[x]} {x.replace(' ', '_').replace('-', '_')}" for x in (self.adata.get('genres') or [])),
                 avg_score=f"{sc}%" if (sc := self.adata.get('averageScore')) else "N/A",
                 status=self.adata.get("status") or "N/A",
+                status = status.capitalize(),
                 start_date=startdate or "N/A",
                 end_date=enddate or "N/A",
                 t_eps=self.adata.get("episodes") or "N/A",
