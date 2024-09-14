@@ -13,8 +13,9 @@ from .reporter import rep
 CAPTION_FORMAT = """
 <b>{title}</b>
 
+<b>Score:</b> ⭐️ {avg_score} [Anilist]({surl})
+<b>Status:</b> {status}
 <b>Episode:</b> {ep_no}
-<b>Status:</b> Releasing
 <b>Duration:</b> 24 Minutes Per Ep.
 <b>Genres:</b> {genres}
 <b>Audio:</b> Japanese
@@ -222,5 +223,6 @@ class TextEditor:
                 t_eps=self.adata.get("episodes") or "N/A",
                 plot= (desc if (desc := self.adata.get("description") or "N/A") and len(desc) < 200 else desc[:200] + "..."),
                 ep_no=self.pdata.get("episode_number"),
+                surl=self.adata.get("siteUrl")
                 cred=Var.BRAND_UNAME,
             )
