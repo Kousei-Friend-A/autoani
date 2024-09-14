@@ -13,7 +13,7 @@ from .reporter import rep
 CAPTION_FORMAT = """
 <b>{title}</b>
 
-<b>Score:</b> ⭐️ {avg_score} [Anilist]({surl})
+<b>Score:</b> ⭐️ {avg_score} <a href="{surl}">Anilist</a>
 <b>Status:/<b> {status}
 <b>Episode:</b> {ep_no}
 <b>Duration:</b> {dura} Minutes Per Ep.
