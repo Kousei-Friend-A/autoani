@@ -223,6 +223,6 @@ class TextEditor:
                 t_eps=self.adata.get("episodes") or "N/A",
                 plot= (desc if (desc := self.adata.get("description") or "N/A") and len(desc) < 200 else desc[:200] + "..."),
                 ep_no=self.pdata.get("episode_number"),
-                surl=self.adata.get("siteUrl")
+                surl=self.adata.get("siteUrl"),
                 cred=Var.BRAND_UNAME,
             )
