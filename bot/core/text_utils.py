@@ -205,7 +205,7 @@ class TextEditor:
             # Check if the base name is too long
             max_length = 255
             if len(base_name) > max_length:
-                 base_name = base_name.replace('_', ' ')
+                base_name = base_name.replace('_', ' ')
             return base_name
             
     @handle_logs
