@@ -31,7 +31,7 @@ async def upcoming_animes():
             else:
                 # Send new message and pin it
                 TD_SCHR = await bot.send_message(Var.MAIN_CHANNEL, sch_list)
-                await TD_SCHR.pin()
+                await (await TD_SCHR.pin()).delete()
 
         except Exception as err:
             await rep.report(str(err), "error")
