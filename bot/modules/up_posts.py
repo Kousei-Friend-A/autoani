@@ -5,10 +5,7 @@ from aiohttp import ClientSession
 from bot import Var, bot, ffQueue
 from bot.core.text_utils import TextEditor
 from bot.core.reporter import rep
-from mongodb import MongoDB  # Import MongoDB class
-
-# Initialize MongoDB
-db = MongoDB(Var.MONGO_URI, "FZAutoAnimes")
+from database import db  # Import the MongoDB instance from database.py
 
 TD_SCHR = None  # Ensure TD_SCHR is initialized properly
 
