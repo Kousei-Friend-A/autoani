@@ -1,14 +1,16 @@
 from json import loads as jloads
-from os import path as ospath, execl
+from os import execl
 from sys import executable
-
 from aiohttp import ClientSession
 from bot import Var, bot, ffQueue
 from bot.core.text_utils import TextEditor
 from bot.core.reporter import rep
+from mongodb import MongoDB  # Import MongoDB class
 
-# Global variable for the pinned message
-TD_SCHR = None
+# Initialize MongoDB
+db = MongoDB(Var.MONGO_URI, "FZAutoAnimes")
+
+TD_SCHR = None  # Ensure TD_SCHR is initialized properly
 
 async def upcoming_animes():
     global TD_SCHR
@@ -17,21 +19,22 @@ async def upcoming_animes():
             async with ClientSession() as ses:
                 res = await ses.get("https://subsplease.org/api/?f=schedule&h=true&tz=Asia/Kolkata")
                 aniContent = jloads(await res.text())["schedule"]
-
             text = "<b>📆 Today's Anime Releases Schedule</b>\n\n"
             for i in aniContent:
                 aname = TextEditor(i["title"])
                 await aname.load_anilist()
                 text += f''' <a href="https://subsplease.org/shows/{i['page']}">{aname.adata.get('title', {}).get('english') or i['title']}</a>\n    • <b>Time</b> : {i["time"]} hrs\n\n'''
-                sch_list = text + "<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>"
+            sch_list = text + "<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>"
 
-            if TD_SCHR is not None:
-                # Edit existing pinned message
+            # Send the message and pin it
+            if TD_SCHR:
                 await TD_SCHR.edit(sch_list)
             else:
-                # Send new message and pin it
                 TD_SCHR = await bot.send_message(Var.MAIN_CHANNEL, sch_list)
                 await (await TD_SCHR.pin()).delete()
+            
+            # Save the message ID to MongoDB
+            await db.saveAnime("schedule", "schedule", "status", post_id=TD_SCHR.message_id)
 
         except Exception as err:
             await rep.report(str(err), "error")
@@ -44,28 +47,27 @@ async def update_shdr(name, link):
     global TD_SCHR
     if TD_SCHR is not None:
         try:
-            # Split the text of the pinned message into lines
-            TD_lines = TD_SCHR.text.split('\n')
+            # Retrieve message ID from MongoDB
+            post_id = await db.getMessageId(name)
+            
+            if post_id:
+                message = await bot.get_message(Var.MAIN_CHANNEL, post_id)
+                if message:
+                    # Update message content based on new data
+                    TD_lines = message.text.split('\n')
+                    for i, line in enumerate(TD_lines):
+                        if line.startswith(f"<a href=\"https://subsplease.org/shows/{name}\">"):
+                            if i + 2 < len(TD_lines):
+                                TD_lines[i + 2] = f"    • **Status :** ✅ __Uploaded__\n    • **Link :** {link}"
+                            else:
+                                TD_lines.append(f"    • **Status :** ✅ __Uploaded__\n    • **Link :** {link}")
 
-            # Find the line that starts with the anime name and update the status
-            updated = False
-            for i, line in enumerate(TD_lines):
-                if line.startswith(f"📌 {name}"):
-                    if i + 2 < len(TD_lines):
-                        TD_lines[i + 2] = f"    • **Status :** ✅ __Uploaded__\n    • **Link :** {link}"
-                    else:
-                        # Handle case where there are not enough lines
-                        TD_lines.append(f"    • **Status :** ✅ __Uploaded__\n    • **Link :** {link}")
-                    updated = True
-                    break
-
-            if updated:
-                # Join the updated lines and edit the pinned message
-                updated_text = "\n".join(TD_lines)
-                await TD_SCHR.edit(updated_text)
+                    updated_text = "\n".join(TD_lines)
+                    await message.edit(updated_text)
+                else:
+                    await rep.report(f"Message with ID {post_id} not found.", "error")
             else:
-                await rep.report(f"No line found for {name}", "warning")
-
+                await rep.report(f"No post ID found for anime {name}.", "error")
         except Exception as e:
             await rep.report(f"Error updating status: {str(e)}", "error")
     else:
