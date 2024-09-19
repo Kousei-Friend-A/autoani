@@ -5,15 +5,12 @@ anitopy
 apscheduler
 dnspython
 motor==3.3.2
-motor pymongo
 feedparser
 psutil
 pycountry
 pyrofork==2.3.45
+python-dotenv
 tgcrypto
 torrentp==0.1.7
 git+https://github.com/kaif-00z/html-telegraph-poster
 uvloop
-python-dotenv
-lxml_html_clean
-ffmpeg-python
