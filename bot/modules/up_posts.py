@@ -35,17 +35,3 @@ async def update_shdr(name, link):
             if line.startswith(f"📌 {name}"):
                 TD_lines[i+2] = f"    • **Status :** ✅ __Uploaded__\n    • **Link :** {link}"
         await TD_SCHR.edit("\n".join(TD_lines))
-
-
-
-
-
-
-
-
-
-
-
-text += f''' <a href="https://subsplease.org/shows/{i['page']}">{aname.adata.get('title', {}).get('english') or i['title']}</a>\n    • <b>Time</b> : {i["time"]} hrs\n\n'''
-                sch_list = text + "<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>"
-            TD_SCHR = await bot.send_message(Var.MAIN_CHANNEL, sch_list)
