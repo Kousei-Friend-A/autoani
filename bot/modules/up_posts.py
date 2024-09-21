@@ -19,7 +19,7 @@ async def upcoming_animes():
             
             sch_list = text + "<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>"
             TD_SCHR = await bot.send_message(Var.MAIN_CHANNEL, sch_list)
-            await (await TD_SCHR.pin()).delete()
+            await (await TD_SCHR.delete())
         except Exception as e:
             # Handle the exception (e.g., log it)
             print(f"An error occurred: {e}")
