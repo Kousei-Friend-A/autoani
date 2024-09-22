@@ -28,7 +28,7 @@ class FFEncoder:
         self.__qual = qual
         self.dl_path = path
         self.__total_time = None
-        self.out_path = path
+        self.out_path = ospath.join("encode", name)
         self.__prog_file = 'prog.txt'
         self.__start_time = time()
 
