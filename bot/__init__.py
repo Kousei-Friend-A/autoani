@@ -60,7 +60,7 @@ class Var:
     AUTO_DEL = getenv("AUTO_DEL", "True").lower() == "true"
     DEL_TIMER = int(getenv("DEL_TIMER", "600"))
     START_PHOTO = getenv("START_PHOTO", "https://te.legra.ph/file/120de4dbad87fb20ab862.jpg")
-    START_MSG="<b>Konichiwa Onii-Chan</b>, I'm Umaru\nAm a good lazy girl who can give you Anime Files that uploaded to Our Channel.\nWhether you're looking for the latest episodes or classic favorites, I’ve got you covered! Dive into the world of anime with me!"
+    START_MSG="<b>Konichiwa Onii-Chan</b>,\nI'm Umaru\nAm a good lazy girl who can give you Anime Files that uploaded to Our Channel."
     START_BUTTONS = getenv("START_BUTTONS", "UPDATES|https://telegram.me/Matiz_Tech SUPPORT|https://t.me/+p78fp4UzfNwzYzQ5")
 
 if Var.THUMB and not ospath.exists("thumb.jpg"):
