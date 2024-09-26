@@ -52,7 +52,6 @@ class FFEncoder:
                 bar = floor(percent/8)*"■" + (12 - floor(percent/8))*"□"
                 
                 progress_str = f"""➤ <b>Anime Name :</b> <b><i>{self.__name}</i></b>
-
 ● <b>Status :</b> <i>Encoding..</i>
     [{bar}] {percent}%
     
