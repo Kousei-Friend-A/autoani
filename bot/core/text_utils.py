@@ -19,9 +19,9 @@ CAPTION_FORMAT = """
 <b>Duration:</b> {dura} Minutes Per Ep.
 <b>Genres:</b> {genres}
 
-📌 Available in <b>480p, 720p, & 1080p</b> with <b>English Subtitles!</b>
+📌 Available in <b>480p, 720p & 1080p</b> with <b>English Subtitles!</b>
 
-© Managed By <b>Elvazo™</b>
+© Managed By <b>NekoNerd™</b>
 """
 
 GENRES_EMOJI = {"Action": "👊", "Adventure": "🏕", "Comedy": "🤣", "Drama": "💃", "Ecchi": "😘", "Fantasy": "🧚🏻‍♂️", "Hentai": "🔞", "Horror": "👻", "Mahou Shoujo": "🧙", "Mecha": "🚀", "Music": "🎸", "Mystery": "🔎", "Psychological": "😵‍💫", "Romance": "❤️", "Sci-Fi": "🤖", "Slice of Life": "🍃", "Sports": "⚽️", "Supernatural": "⚡️", "Thriller": "😳"}
@@ -201,7 +201,7 @@ class TextEditor:
         anime_season = str(ani_s[-1]) if (ani_s := self.pdata.get('anime_season', '01')) and isinstance(ani_s, list) else str(ani_s)
         if anime_name and self.pdata.get("episode_number"):
             titles = self.adata.get('title', {})
-            return f"""[S{anime_season}-{'E'+str(self.pdata.get('episode_number')) if self.pdata.get('episode_number') else ''}] {titles.get('english') or titles.get('romaji') or titles.get('native')} {'['+qual+'p]' if qual else ''} {'['+codec.upper()+'] ' if codec else ''}{'['+lang+']'} {Var.BRAND_UNAME}.mkv"""
+            return f"""[S{anime_season}-{'E'+str(self.pdata.get('episode_number')) if self.pdata.get('episode_number') else ''}] {titles.get('english') or titles.get('romaji') or titles.get('native')} {'['+qual+'p]' if qual else ''} {'['+codec.upper()+'] ' if codec else ''}{'['+lang+']'}.mkv"""
 
     @handle_logs
     async def get_caption(self):
