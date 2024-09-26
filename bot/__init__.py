@@ -42,13 +42,12 @@ class Var:
     RSS_ITEMS = getenv("RSS_ITEMS", "https://subsplease.org/rss/?r=1080").split()
     FSUB_CHATS = list(map(int, getenv('FSUB_CHATS').split()))
     BACKUP_CHANNEL = getenv("BACKUP_CHANNEL") or ""
-    MAIN_CHANNEL = -1002441678099
+    MAIN_CHANNEL = int(getenv("MAIN_CHANNEL"))
     LOG_CHANNEL = int(getenv("LOG_CHANNEL") or 0)
-    FILE_STORE = -1002439933464
+    FILE_STORE = int(getenv("FILE_STORE"))
     ADMINS = list(map(int, getenv("ADMINS", "1242011540").split()))
     
     SEND_SCHEDULE = "True"
-    BRAND_UNAME = getenv("BRAND_UNAME", "@Elvazo")
     FFCODE_1080 = """ffmpeg -i '{}' -progress '{}' -preset veryfast -c:v libx264 -s 1920x1080 -pix_fmt yuv420p -crf 25 -c:a libopus -b:a 32k -c:s copy -map 0 -ac 2 -vbr 2 -level 3.1 '{}' -y"""
     FFCODE_720 = """ffmpeg -i '{}' -progress '{}' -preset veryfast -c:v libx264 -s 1280x720 -pix_fmt yuv420p -crf 26 -c:a libopus -b:a 32k -c:s copy -map 0 -ac 2 -vbr 2 -level 3.1 '{}' -y"""
     FFCODE_480 = """ffmpeg -i '{}' -progress '{}' -preset veryfast -c:v libx264 -s 640x480 -pix_fmt yuv420p -crf 26 -c:a libopus -b:a 32k -c:s copy -map 0 -ac 2 -vbr 2 -level 3.1 '{}' -y"""
@@ -59,9 +58,9 @@ class Var:
     THUMB = getenv("THUMB", "https://te.legra.ph/file/621c8d40f9788a1db7753.jpg")
     AUTO_DEL = getenv("AUTO_DEL", "True").lower() == "true"
     DEL_TIMER = int(getenv("DEL_TIMER", "600"))
-    START_PHOTO = getenv("START_PHOTO", "https://te.legra.ph/file/120de4dbad87fb20ab862.jpg")
-    START_MSG="<b>Konichiwa Onii-Chan</b>,\nI'm Umaru\nAm a good lazy girl who can give you Anime Files that uploaded to Our Channel."
-    START_BUTTONS = getenv("START_BUTTONS", "UPDATES|https://telegram.me/Matiz_Tech SUPPORT|https://t.me/+p78fp4UzfNwzYzQ5")
+    START_PHOTO="https://i.ibb.co/ZM9mfL1/wallpaperflare-com-wallpaper.jpg"
+    START_MSG="<b>Konichiwa Onii-Chan</b>,\n\n   <i>I'm Umaru, Am a good lazy girl who can give you Anime Files that uploaded to Our Channel.</b>"
+    START_BUTTONS="UPDATES|https://telegram.me/OngoingAnimeWave"
 
 if Var.THUMB and not ospath.exists("thumb.jpg"):
     system(f"wget -q {Var.THUMB} -O thumb.jpg")
