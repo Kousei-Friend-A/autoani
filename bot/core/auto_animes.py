@@ -62,6 +62,7 @@ async def get_animes(name, torrent, force=False):
             
             await asleep(1.5)
             stat_msg = await sendMessage(Var.MAIN_CHANNEL, f"➤ <b>Anime Name :</b> <b><i>{name}</i></b>\n\n<i>● Downloading...</i>")
+            await sendSticker(Var.MAIN_CHANNEL, "CAACAgUAAxkBAAIHEGMKUONcnXhytKoTJxNk6XfNjNgIAAJfAAOpmuYW6_3Y6DqiC_seBA")
             dl = await TorDownloader("./downloads").download(torrent, name)
             if not dl or not ospath.exists(dl):
                 await rep.report(f"File Download Incomplete, Try Again", "error")
