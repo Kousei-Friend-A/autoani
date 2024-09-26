@@ -227,5 +227,4 @@ class TextEditor:
                 ep_no=self.pdata.get("episode_number"),
                 surl=self.adata.get("siteUrl"),
                 dura=self.adata.get("duration"),
-                cred=Var.BRAND_UNAME,
             )
