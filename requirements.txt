@@ -1,8 +1,5 @@
 aiohttp
 aioshutil
-pyrogram
-pyromod
-requests
 aiofiles
 anitopy
 apscheduler
