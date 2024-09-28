@@ -17,7 +17,8 @@ async def upcoming_animes():
             for i in aniContent:
                 aname = TextEditor(i["title"])
                 await aname.load_anilist()
-                text += f''' <a href="https://subsplease.org/shows/{i['page']}">{aname.adata.get('title', {}).get('english') or i['title']}</a>\n    • <b>Time</b> : {i["time"]} hrs\n\n'''
+                sch_list += f''' <a href="https://subsplease.org/shows/{i['page']}">{aname.adata.get('title', {}).get('english') or i['title']}</a>\n    • <b>Time</b> : {i["time"]} hrs\n\n'''
+                text = sch_list + "<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>"
             TD_SCHR = await bot.send_message(Var.MAIN_CHANNEL, text)
         except Exception as err:
             await rep.report(str(err), "error")
