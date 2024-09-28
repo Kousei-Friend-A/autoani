@@ -33,7 +33,7 @@ async def upcoming_animes():
             for i in aniContent:
                 aname = TextEditor(i["title"])
                 await aname.load_anilist()
-                sch_list += f''' <a href="https://subsplease.org/shows/{i['page']}">{aname.adata.get('title', {}).get('english') or i['title']}</a>\n    • <b>Time</b> : {i["time"]} hrs\n\n'''
+                sch_list += f"[<code>{time}</code>] - 📌 <b>{title}</b>\n"  # Adjust time format if needed
             text = f"<b>📆 Today's Anime Releases Schedule</b>\n\n{sch_list}<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>"
             await bot.send_message(Var.MAIN_CHANNEL, text)
         except Exception as err:
