@@ -54,6 +54,9 @@ async def send_schedule():
             sent_message = await bot.send_message(Var.MAIN_CHANNEL, text)
             await save_last_message_id(sent_message.message_id)  # Save the new message ID
 
+            # Pin the new message
+            await (await sent_message.pin()).delete()
+
         except Exception as err:
             await rep.report(str(err), "error")
 
