@@ -21,7 +21,7 @@ async def send_and_restart():
             await rep.report("Auto Restarting..!!", "info")
             execl(executable, executable, "-m", "bot")
 
-        await asyncio.sleep(60)  # Check every minute
+        await asyncio.sleep(86400)  # 86400 seconds in a day
 
 async def upcoming_animes():
     if Var.SEND_SCHEDULE:
