@@ -13,15 +13,16 @@ async def upcoming_animes():
             async with ClientSession() as ses:
                 res = await ses.get("https://subsplease.org/api/?f=schedule&h=true&tz=Asia/Kolkata")
                 aniContent = jloads(await res.text())["schedule"]
-            text = "<b>📆 Today's Anime Releases Schedule [IST]</b>\n\n"
+            sch_list = ""
             for i in aniContent:
                 aname = TextEditor(i["title"])
                 await aname.load_anilist()
                 sch_list += f''' <a href="https://subsplease.org/shows/{i['page']}">{aname.adata.get('title', {}).get('english') or i['title']}</a>\n    • <b>Time</b> : {i["time"]} hrs\n\n'''
-                text = sch_list + "<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>"
+            text = f"<b>📆 Today's Anime Releases Schedule</b>\n\n{sch_list}<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>"
             TD_SCHR = await bot.send_message(Var.MAIN_CHANNEL, text)
         except Exception as err:
             await rep.report(str(err), "error")
+            # Optionally log the error here
     if not ffQueue.empty():
         await ffQueue.join()
     await rep.report("Auto Restarting..!!", "info")
