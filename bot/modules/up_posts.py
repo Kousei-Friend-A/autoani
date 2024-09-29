@@ -22,28 +22,27 @@ async def get_last_message_id():
             return int(await f.read().strip())
     return None
 
-async def fetch_schedule():
+async def fetch_and_format_schedule():
     async with ClientSession() as ses:
         res = await ses.get("https://subsplease.org/api/?f=schedule&h=true&tz=Asia/Kolkata")
-        return jloads(await res.text())["schedule"]
+        aniContent = jloads(await res.text())["schedule"]
+        
+        sch_list = ""
+        for i in aniContent:
+            aname = TextEditor(i["title"])
+            await aname.load_anilist()
+            title = aname.adata.get('title', {}).get('english') or i['title']
+            time = i["time"]
+            aired_icon = "✅" if i["aired"] else ""
+            sch_list += f"[<code>{time}</code>] - 📌 <b>{title}</b> {aired_icon}\n\n"
 
-async def format_schedule(aniContent):
-    sch_list = ""
-    for i in aniContent:
-        aname = TextEditor(i["title"])
-        await aname.load_anilist()
-        title = aname.adata.get('title', {}).get('english') or i['title']
-        time = i["time"]
-        aired_icon = "✅" if i["aired"] else ""
-        sch_list += f"[<code>{time}</code>] - 📌 <b>{title}</b> {aired_icon}\n\n"
-    return sch_list
+        return sch_list
 
 async def send_schedule():
     last_message_id = await get_last_message_id()
     if Var.SEND_SCHEDULE:
         try:
-            aniContent = await fetch_schedule()
-            sch_list = await format_schedule(aniContent)
+            sch_list = await fetch_and_format_schedule()
 
             text = (f"<b>📆 Today's Anime Releases Schedule</b>\n\n{sch_list}"
                     f"<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>")
@@ -82,5 +81,3 @@ async def send_and_restart():
 
 async def main():
     await send_and_restart()
-
-# If you're using an event loop, make sure to call main() appropriately
