@@ -141,7 +141,7 @@ async def is_fsubbed(uid):
     return True
         
 async def get_fsubs(uid, txtargs):
-    txt = "<b><i>Please Join Following Channels to Use this Bot!</i></b>\n\n"
+    txt = "<b><i>Onii-Chan,  Please Join Following Channels to Use Me!</i></b>\n\n"
     btns = []
     for no, chat in enumerate(Var.FSUB_CHATS, start=1):
         try:
