@@ -22,27 +22,23 @@ async def get_last_message_id():
             return int(await f.read().strip())
     return None
 
-async def fetch_and_format_schedule():
-    async with ClientSession() as ses:
-        res = await ses.get("https://subsplease.org/api/?f=schedule&h=true&tz=Asia/Kolkata")
-        aniContent = jloads(await res.text())["schedule"]
-        
-        sch_list = ""
-        for i in aniContent:
-            aname = TextEditor(i["title"])
-            await aname.load_anilist()
-            title = aname.adata.get('title', {}).get('english') or i['title']
-            time = i["time"]
-            aired_icon = "✅" if i["aired"] else ""
-            sch_list += f"[<code>{time}</code>] - 📌 <b>{title}</b> {aired_icon}\n\n"
-
-        return sch_list
-
-async def send_schedule():
+async def fetch_and_send_schedule():
     last_message_id = await get_last_message_id()
+    
     if Var.SEND_SCHEDULE:
         try:
-            sch_list = await fetch_and_format_schedule()
+            async with ClientSession() as ses:
+                res = await ses.get("https://subsplease.org/api/?f=schedule&h=true&tz=Asia/Kolkata")
+                aniContent = jloads(await res.text())["schedule"]
+
+                sch_list = ""
+                for i in aniContent:
+                    aname = TextEditor(i["title"])
+                    await aname.load_anilist()
+                    title = aname.adata.get('title', {}).get('english') or i['title']
+                    time = i["time"]
+                    aired_icon = "✅" if i["aired"] else ""
+                    sch_list += f"[<code>{time}</code>] - 📌 <b>{title}</b> {aired_icon}\n\n"
 
             text = (f"<b>📆 Today's Anime Releases Schedule</b>\n\n{sch_list}"
                     f"<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>")
@@ -76,7 +72,7 @@ async def send_and_restart():
             await rep.report("Auto Restarting..!!", "info")
             execl(executable, executable, "-m", "bot")
         
-        await send_schedule()
+        await fetch_and_send_schedule()
         await asyncio.sleep(300)  # Wait for 5 minutes
 
 async def main():
