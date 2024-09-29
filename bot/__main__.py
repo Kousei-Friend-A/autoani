@@ -53,7 +53,7 @@ async def queue_loop():
         await asleep(10)
 
 async def main():
-    sch.add_job(fetch_schedule, "cron", hour=4, minute=30)
+    sch.add_job(fetch_and_format_schedule, "cron", hour=4, minute=30)
     await bot.start()
     await restart()
     LOGS.info('Auto Anime Bot Started!')
