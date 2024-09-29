@@ -81,3 +81,6 @@ async def send_and_restart():
 
 async def main():
     await send_and_restart()
+
+if __name__ == "__main__":
+    asyncio.run(main())
