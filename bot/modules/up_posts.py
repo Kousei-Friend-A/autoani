@@ -10,7 +10,7 @@ from bot.core.text_utils import TextEditor
 from bot.core.reporter import rep
 
 MESSAGE_ID_FILE = "last_message_id.txt"
-RESTART_TIME = "04:30"
+RESTART_TIME = "03:00"
 
 async def save_last_message_id(message_id):
     async with aiofiles.open(MESSAGE_ID_FILE, "w") as f:
