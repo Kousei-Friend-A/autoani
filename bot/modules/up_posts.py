@@ -39,7 +39,7 @@ async def send_schedule():
                 title = aname.adata.get('title', {}).get('english') or i['title']
                 time = i["time"]
                 aired_icon = "✅" if i["aired"] else ""
-                sch_list += f"[<code>{time}</code>] - 📌 <b>{title}</b> {aired_icon}\n"
+                sch_list += f"[<code>{time}</code>] - 📌 <b>{title}</b> {aired_icon}\n\n"
 
             text = f"<b>📆 Today's Anime Releases Schedule</b>\n\n{sch_list}<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>"
 
