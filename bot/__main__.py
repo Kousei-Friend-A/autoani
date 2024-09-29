@@ -9,7 +9,7 @@ from signal import SIGKILL
 from bot import bot, Var, bot_loop, sch, LOGS, ffQueue, ffLock, ffpids_cache, ff_queued
 from bot.core.auto_animes import fetch_animes
 from bot.core.func_utils import clean_up, new_task, editMessage
-from bot.modules.up_posts import fetch_and_format_schedule
+from bot.modules.up_posts import fetch_and_send_schedule
 
 @bot.on_message(command('restart') & user(Var.ADMINS))
 @new_task
@@ -53,7 +53,7 @@ async def queue_loop():
         await asleep(10)
 
 async def main():
-    sch.add_job(fetch_and_format_schedule, "cron", hour=3, minute=30)
+    sch.add_job(fetch_and_send_schedule, "cron", hour=3, minute=00)
     await bot.start()
     await restart()
     LOGS.info('Auto Anime Bot Started!')
