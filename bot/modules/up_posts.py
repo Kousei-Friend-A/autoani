@@ -40,7 +40,7 @@ async def fetch_and_send_schedule():
                     aired_icon = "✅" if i["aired"] else ""
                     sch_list += f"[<code>{time}</code>] - 📌 <b>{title}</b> {aired_icon}\n\n"
 
-            text = (f"<b>📆 Today's Anime Releases Schedule</b>\n\n{sch_list}"
+            text = (f"<b>📆 Today's Schedule</b>\n\n{sch_list}"
                     f"<b>⏰ Current TimeZone :</b> <code>IST (UTC +5:30)</code>")
 
             # Delete the previous message if it exists
