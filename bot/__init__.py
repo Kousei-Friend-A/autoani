@@ -43,7 +43,7 @@ class Var:
     FSUB_CHATS = list(map(int, getenv('FSUB_CHATS').split()))
     BACKUP_CHANNEL = getenv("BACKUP_CHANNEL") or ""
     MAIN_CHANNEL = -1002441678099
-    LOG_CHANNEL = 1002375961503
+    LOG_CHANNEL = 2375961503
     FILE_STORE = int(getenv("FILE_STORE"))
     ADMINS = list(map(int, getenv("ADMINS", "1242011540").split()))
     
