@@ -15,7 +15,7 @@ async def upcoming_animes():
                 aniContent = jloads(await res.text())["schedule"]
 
             sch_list = ""
-            text = "<b>📆 Today's Schedule [IST]</b>\n\n"
+            text = "<b>📆 Today's Schedule</b>\n\n"
             for i in aniContent:
                 aname = TextEditor(i["title"])
                 await aname.load_anilist()
