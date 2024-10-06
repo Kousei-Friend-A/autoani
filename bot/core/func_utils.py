@@ -16,6 +16,7 @@ from aiofiles import open as aiopen
 from aioshutil import rmtree as aiormtree
 from html_telegraph_poster import TelegraphPoster
 from feedparser import parse as feedparse
+from pyrogram import utils
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.errors import MessageNotModified, FloodWait, UserNotParticipant, ReplyMarkupInvalid, MessageIdInvalid
