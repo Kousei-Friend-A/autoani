@@ -8,6 +8,7 @@ motor==3.6.0
 feedparser
 psutil
 pycountry
+pyrogram
 pyrofork
 python-dotenv
 tgcrypto
