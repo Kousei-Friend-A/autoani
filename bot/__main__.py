@@ -1,6 +1,7 @@
 from asyncio import create_task, create_subprocess_exec, create_subprocess_shell, run as asyrun, all_tasks, gather, sleep as asleep
 from aiofiles import open as aiopen
 from pyrogram import idle
+from pyrogram import utils
 from pyrogram.filters import command, user
 from os import path as ospath, execl, kill
 from sys import executable
