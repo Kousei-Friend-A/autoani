@@ -49,7 +49,7 @@ async def get_animes(name, torrent, force=False):
             or (ani_data and not (qual_data := ani_data.get(ep_no))) \
             or (ani_data and qual_data and not all(qual for qual in qual_data.values()))):
             
-            if "[Batch]" in name:
+            if "[Batch]" or "Wagutsushi" in name:
                 await rep.report(f"Torrent Skipped!\n\n{name}", "warning")
                 return
             
