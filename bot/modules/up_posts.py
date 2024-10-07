@@ -29,9 +29,3 @@ async def upcoming_animes():
 
         except Exception as err:
             await rep.report(str(err), "error")
-
-    if not ffQueue.empty():
-        await ffQueue.join()
-        
-    await rep.report("Auto Restarting..!!", "info")
-    execl(executable, executable, "-m", "bot")
