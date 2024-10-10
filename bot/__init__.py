@@ -40,6 +40,7 @@ class Var:
         exit(1)
 
     RSS_ITEMS = getenv("RSS_ITEMS", "https://subsplease.org/rss/?r=1080").split()
+    SEND_SCHEDULE = getenv("SEND_SCHEDULE", "False").lower() == "true"
     FSUB_CHATS = list(map(int, getenv('FSUB_CHATS').split()))
     BACKUP_CHANNEL = getenv("BACKUP_CHANNEL") or ""
     MAIN_CHANNEL = int(getenv("MAIN_CHANNEL"))
