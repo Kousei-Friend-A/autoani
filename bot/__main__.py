@@ -10,14 +10,11 @@ from signal import SIGKILL
 from bot import bot, Var, bot_loop, sch, LOGS, ffQueue, ffLock, ffpids_cache, ff_queued
 from bot.core.auto_animes import fetch_animes
 from bot.core.func_utils import clean_up, new_task, editMessage
-from bot.modules.up_posts import upcoming_animes
 
 @bot.on_message(command('restart') & user(Var.ADMINS))
 @new_task
 async def restart(client, message):
     rmessage = await message.reply('<i>Restarting...</i>')
-    if sch.running:
-        sch.shutdown(wait=False)
     await clean_up()
     if len(ffpids_cache) != 0: 
         for pid in ffpids_cache:
@@ -54,11 +51,9 @@ async def queue_loop():
         await asleep(10)
 
 async def main():
-    sch.add_job(upcoming_animes, "cron", hour=0, minute=30) # 12:30 AM
     await bot.start()
     await restart()
     LOGS.info('Auto Anime Bot Started!')
-    sch.start()
     bot_loop.create_task(queue_loop())
     await fetch_animes()
     await idle()
