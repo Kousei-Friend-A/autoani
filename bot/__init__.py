@@ -48,7 +48,6 @@ class Var:
     FILE_STORE = int(getenv("FILE_STORE"))
     ADMINS = list(map(int, getenv("ADMINS", "1242011540").split()))
     
-    SEND_SCHEDULE = "False"
     FFCODE_1080 = """ffmpeg -i '{}' -progress '{}' -preset veryfast -c:v libx264 -s 1920x1080 -pix_fmt yuv420p -crf 25.5 -c:a libopus -b:a 48k -c:s copy -map 0 -ac 2 -vbr 2 -level 3.1 '{}' -y"""
     FFCODE_720 = """ffmpeg -i '{}' -progress '{}' -preset veryfast -c:v libx264 -s 1280x720 -pix_fmt yuv420p -crf 25.5 -c:a libopus -b:a 48k -c:s copy -map 0 -ac 2 -vbr 2 -level 3.1 '{}' -y"""
     FFCODE_480 = """ffmpeg -i '{}' -progress '{}' -preset veryfast -c:v libx264 -s 640x480 -pix_fmt yuv420p -crf 25.5 -c:a libopus -b:a 48k -c:s copy -map 0 -ac 2 -vbr 2 -level 3.1 '{}' -y"""
